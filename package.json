@@ -1,0 +1,11 @@
+{
+  "name": "nearmart-story-v1-node-deploy",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node dashboard/server.mjs"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

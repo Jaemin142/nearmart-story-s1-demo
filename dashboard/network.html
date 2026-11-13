@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>NearMart | Network Intelligence</title><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/network.css"><script type="module" src="/network.js"></script></head>
+<body class="network-page">
+<header class="header"><a class="brand" href="/"><b class="logo" aria-hidden="true">N</b><strong>NearMart</strong><span>Network Intelligence</span></a><div class="header-controls"><span class="chip"><small>Run ID</small><span id="network-run">불러오는 중</span></span><form method="post" action="/logout"><button class="logout-button">로그아웃</button></form></div></header>
+<div class="shell">
+<nav class="sidebar network-nav" aria-label="주 메뉴"></nav>
+<main class="network-main">
+  <section class="network-intro ambient ambient--hero"><div><h1>서울 네트워크 분석</h1><p>행정동 배정, 접수 수요와 운영 제약의 공간 분포</p></div><div id="network-state" class="network-state" role="status">불러오는 중</div></section>
+  <div class="analysis-layout drawer-closed">
+    <aside class="panel analysis-tools" id="analysis-tools" aria-label="분석 도구">
+      <section class="network-tour" id="network-tour" hidden><small>STORED ASSIGNMENT · T2</small><h2>서울 서비스 권역 탐색</h2><p>저장된 배정 범위를 따라가며 선택 동의 근거를 확인합니다.</p><button id="network-tour-play" type="button">▶ 권역 탐색 시연</button><div class="network-tour-steps" aria-label="권역 탐색 단계"><button type="button" data-tour-step="0">01 <span>서울 전체 · 427동</span></button><button type="button" data-tour-step="1">02 <span id="network-tour-site-label">P1 배정 권역</span></button><button type="button" data-tour-step="2">03 <span>선택 동 → 거점 연결</span></button><button type="button" data-tour-step="3">04 <span>원본 근거 확인</span></button></div><p id="network-tour-status" role="status">단계를 눌러 직접 탐색할 수도 있습니다.</p><button id="network-tour-stop" type="button" hidden>시연 종료</button></section>
+      <section><h2>분석 모드</h2><div id="analysis-modes" class="analysis-modes"></div></section>
+      <section><h2>분석 조건</h2><label>기준 연도<select id="analysis-year"></select></label><p class="note" id="analysis-condition">N2 원설계 · BASE · HYP_SLOW · 20mm</p></section>
+      <section><h2>지도 레이어</h2><label><input id="layer-boundaries" type="checkbox" checked> 행정동 경계</label><label><input id="layer-data" type="checkbox" checked> 분석 모드 색상</label><label><input id="layer-sites" type="checkbox" checked> 조건부 운영 거점</label><label><input id="layer-candidates" type="checkbox" checked> 후보 거점</label><label><input id="layer-river" type="checkbox" checked> 한강</label><label><input type="checkbox" disabled> 배송 경로 · 미연결</label></section>
+      <section><h2>공식 연간 전망</h2><p class="note warning">BLOCKED_ANNUAL / null</p></section>
+    </aside>
+    <div class="analysis-center">
+      <section class="panel analysis-map" aria-label="서울 네트워크 분석 지도">
+        <div class="analysis-bar"><button id="analysis-toggle-tools" aria-controls="analysis-tools" aria-expanded="true">도구 접기</button><h2 id="analysis-map-title">네트워크 구조</h2><button id="analysis-reopen" aria-controls="analysis-drawer" aria-expanded="false" hidden>상세 분석 펼치기</button><div class="analysis-search"><input id="analysis-search" type="search" aria-label="행정동 또는 거점 검색" placeholder="행정동·거점 ID 검색" autocomplete="off"><div id="analysis-results" hidden></div></div></div>
+        <div class="analysis-map-frame"><svg id="analysis-svg" aria-label="서울 427개 행정동 및 네트워크 레이어"></svg><div class="zoom"><button id="analysis-plus" aria-label="지도 확대">+</button><button id="analysis-minus" aria-label="지도 축소">−</button><button id="analysis-reset" aria-label="서울 전체 보기">⌖</button></div><div class="legend analysis-legend" id="analysis-legend"></div><div id="analysis-selection" aria-live="polite"></div><div class="network-focus-inset" id="network-focus-inset" hidden><strong id="network-focus-title">P1 배정 권역</strong><svg id="network-focus-svg" viewBox="0 0 240 160" aria-label="선택 거점의 저장 배정 행정동 확대 보기"></svg><span id="network-focus-caption">저장 배정 관계 · 실제 배송 경로 아님</span></div><div class="analysis-map-note" id="analysis-map-note" hidden>직선은 저장 배정 관계를 나타냅니다 · 실제 배송 경로 아님</div></div>
+      </section>
+      <section class="panel analysis-summary ambient ambient--insight" aria-label="순위 및 분석 결과"><div class="analysis-ranking"><h2 id="analysis-chart-title"></h2><div id="analysis-chart"></div></div><div class="analysis-findings" id="analysis-findings"></div></section>
+    </div>
+    <aside class="panel analysis-drawer" id="analysis-drawer" hidden aria-label="선택 권역 또는 거점 상세"><header><h2>선택 대상 분석</h2><button id="analysis-close" aria-label="상세 닫기">×</button></header><div id="analysis-detail"></div></aside>
+  </div>
+</main>
+</div>
+</body></html>

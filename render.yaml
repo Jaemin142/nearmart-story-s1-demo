@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: nearmart-story-s1
+    runtime: docker
+    healthCheckPath: /healthz
+    envVars:
+      - key: NEARMART_USERNAME
+        sync: false
+      - key: NEARMART_PASSWORD
+        sync: false

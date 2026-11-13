@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>NearMart | Logistics Control Tower</title><link rel="stylesheet" href="/styles.css"><script type="module" src="/app.js"></script></head>
+<body>
+<header class="header">
+  <a class="brand" href="/" aria-label="NearMart 대시보드"><b class="logo">N</b><strong>NearMart</strong><span>Logistics Control Tower</span></a>
+  <div class="header-controls">
+    <form method="post" action="/logout"><button class="logout-button">로그아웃</button></form>
+    <button class="chip" id="run"><small>Run ID</small><span>불러오는 중</span></button>
+
+    <button class="chip" id="status"><small>데이터 상태</small><span>불러오는 중</span></button>
+    <button class="icon-button" id="alerts-button" aria-label="주요 알림" data-icon="bell"></button>
+    <button class="icon-button" id="help" aria-label="데이터 상태 안내" data-icon="help"></button>
+  </div>
+</header>
+<div class="shell">
+  <nav class="sidebar" aria-label="주 메뉴"></nav>
+  <main>
+    <section class="overview"><div class="intro"><h1>서울 배송 네트워크 운영 현황</h1><p>거점 운영과 배송망 상태를<br>한 화면에서 확인합니다.</p></div><div id="metrics" class="metrics"></div></section>
+    <div class="workspace detail-collapsed">
+      <aside class="operations panel" id="operations-tools" aria-label="운영 관제 도구">
+        <section class="tool-section"><h2>네트워크 탐색</h2><div class="explorer-tools"><button data-action="dongs">행정동 검색</button><button data-action="sites">거점 탐색</button></div></section>
+        <section class="tool-section"><h2>지도 레이어</h2><div class="layer-options"><label><input type="checkbox" id="boundaries" checked> 행정동 경계</label><label><input type="checkbox" id="markers" checked> 거점 후보</label><label><input type="checkbox" id="areas" checked> 조건부 권역</label><label><input type="checkbox" id="selected-layer" checked> 선택 거점</label><label><input type="checkbox" disabled> 배송 경로</label></div></section>
+        <section class="tool-section"><h2>운영 필터</h2><div class="operation-filters"><label class="chip"><small>시나리오</small><select id="scenario"><option value="conditional">조건부 기준</option><option value="official">공식 연간 전망</option></select></label>
+    <label class="chip"><small>분석연도</small><select id="year"></select></label><label class="chip"><small>후보 자치구</small><select id="district"><option value="">전체</option></select></label></div></section>
+        <details class="tool-section trend"><summary>네트워크 운영 추이</summary><div id="network-trend"></div></details>
+        <details class="tool-section scope" open><summary>데이터 범위 및 상태</summary><div id="scope"></div></details>
+        <section class="tool-section alerts" id="alerts" tabindex="-1"><h2>주요 알림</h2><div id="alert-list"></div><details class="alert-more"><summary>더보기</summary><div id="extra-alerts"></div></details></section>
+      </aside>
+      <div class="center">
+        <section class="panel map-panel" aria-label="서울 네트워크 지도">
+          <div class="tabs map-tabs" aria-label="지도 분석"><button id="toggle-tools" aria-controls="operations-tools" aria-expanded="true">운영 도구 접기</button><button id="map-network" class="active" aria-current="true">네트워크 지도</button><button id="map-areas">권역별 현황</button><button disabled title="수요 분포 레이어 미연결">수요·처리량 분포</button><button disabled title="병목 공간 레이어 미연결">병목 분석</button><button id="toggle-detail" aria-controls="hub-panel" aria-expanded="false">거점 상세 펼치기</button></div>
+          <div class="map-body">
+            <canvas id="map" aria-label="서울 행정동과 거점 후보 지도"></canvas>
+
+            <div class="zoom"><button id="plus" aria-label="지도 확대">+</button><button id="minus" aria-label="지도 축소">−</button><button id="reset" aria-label="지도 초기 위치" data-icon="target"></button></div>
+            <div id="map-tooltip" class="map-tooltip" hidden></div><div id="map-error" class="map-error" role="status">서울 경계 불러오는 중</div>
+            <div class="legend"><b>네트워크 레이어</b><span><i class="dot"></i> 선택 거점</span><span><i class="dot scenario"></i> 조건부 운영안</span><span><i class="dot cyan"></i> 거점 후보</span><span><i class="boundary-key"></i> 행정동 경계</span><span id="blocked-key"><i class="dot amber"></i> 이 실행에서 계산 불가</span><small id="map-source"></small><small id="context-source" hidden>인접 경계 · SGIS / <a href="https://github.com/vuski/admdongkor" target="_blank" rel="noopener noreferrer">admdongkor</a></small><small id="river-source" hidden>한강 · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap</a></small></div>
+          </div>
+        </section>
+        <section class="panel timeline"><div class="timeline-heading"><h2>네트워크 진화 타임라인</h2><span><i class="dot"></i> 선택 연도 <i class="dot cyan"></i> 조건부 결과 <i class="dot amber"></i> 차단</span></div><div id="years" class="years"></div></section>
+      </div>
+      <aside class="intelligence" id="hub-panel" hidden aria-label="거점 운영 상세">
+        <section class="panel selected"><h2>선택 거점 상세 <span class="badge" id="site-badge">미연결</span></h2><button class="site-button" id="find-site"><span class="site-icon" data-icon="box"></span><span><strong id="site-name">거점 후보 선택</strong><small id="site-place">지도 또는 후보 목록</small></span><span aria-hidden="true">›</span></button></section>
+        <section class="panel details"><h2 class="operation-heading">거점 운영 지표</h2><div id="detail"></div><div class="drawer-links"><button data-action="map">네트워크 분석</button><button data-action="evidence">데이터 근거</button></div></section>
+      </aside>
+    </div>
+  </main>
+</div>
+<dialog id="dialog"><div class="dialog-head"><h2 id="dialog-title"></h2><form method="dialog"><button aria-label="닫기">×</button></form></div><div id="dialog-body"></div></dialog>
+<div id="announcement" class="sr-only" aria-live="polite"></div>
+</body>
+</html>
+
+
+

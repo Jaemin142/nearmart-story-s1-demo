@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>NearMart | Evidence Center</title><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/evidence.css"><script type="module" src="/evidence-entry.js"></script></head>
+<body class="evidence-page">
+<header class="header"><a class="brand" href="/"><b class="logo" aria-hidden="true">N</b><strong>NearMart</strong><span>Data Quality &amp; Evidence</span></a><div class="header-controls"><span class="chip"><small>Run ID</small><span id="evidence-run">불러오는 중</span></span><form method="post" action="/logout"><button class="logout-button">로그아웃</button></form></div></header>
+<div class="shell">
+<nav class="sidebar evidence-nav" aria-label="주 메뉴"></nav>
+<main class="ev">
+  <section class="ev-heading ambient ambient--evidence"><div><h1>데이터 현황 및 검증 센터</h1><p>원본 입력, 모델 검증 범위와 화면 지표의 연결 근거를 추적합니다.</p></div><span id="ev-status" role="status">근거 자료 조회 중</span></section>
+  <nav class="panel ev-tabs" id="ev-tabs" aria-label="검증 센터 탭"></nav>
+  <div class="ev-layout">
+    <aside id="ev-tools" class="panel ev-tools" aria-label="검증 탐색">
+      <h2>검증 탐색</h2><label for="ev-search">항목 검색</label><input id="ev-search" type="search" placeholder="파일명·실행 ID·오류 코드">
+      <label for="ev-filter">목록 상태</label><select id="ev-filter"><option value="">전체</option></select>
+      <div class="ev-side-section"><h3>상태 해석</h3><dl><dt>출처 유형</dt><dd>OBSERVED · MODEL_ESTIMATE<br>ASSUMPTION_SCENARIO · DEMO</dd><dt>검증 여부</dt><dd>VALIDATED · 미검증 · 부분 검증</dd><dt>계산 가능 여부</dt><dd>연결 · BLOCKED · UNAVAILABLE</dd></dl></div>
+      <div class="ev-side-section"><h3>공식 연간 전망</h3><p class="ev-warning">BLOCKED_ANNUAL / null</p><p>승인 가정 기반 423동 결과는 별도입니다.</p></div>
+      <div class="ev-side-section"><h3>별도 출처</h3><p>Business 독립 재계산 · UNAVAILABLE</p><p>S7 검토 패키지와 S6 화면 값은 별도 관리합니다.</p></div>
+    </aside>
+    <div class="ev-work">
+      <section class="panel ev-chain ambient ambient--evidence" aria-label="End-to-End 프로세스"><div><h2>End-to-End 연결 상태</h2><small>단계를 선택하면 입력·출력·검증 근거가 열립니다.</small></div><div id="ev-chain"></div></section>
+      <section class="panel ev-worklist"><header><button id="ev-toggle" aria-controls="ev-tools" aria-expanded="true">탐색 접기</button><div><h2 id="ev-list-title">데이터 개요</h2><p id="ev-list-caption"></p></div></header><div id="ev-list"></div></section>
+    </div>
+    <aside class="panel ev-detail" aria-label="선택 항목 근거"><header><h2>선택 항목 근거</h2><small id="ev-detail-key"></small></header><div id="ev-detail"></div></aside>
+  </div>
+</main>
+</div>
+</body></html>

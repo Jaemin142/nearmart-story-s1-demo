@@ -1,0 +1,8 @@
+.data-version-control{display:flex;align-items:center;gap:8px;color:#a9bdca;font-size:11px;white-space:nowrap}
+.data-version-control select{max-width:145px;padding:5px 22px 5px 8px;border:1px solid #315364;border-radius:7px;background:#102735;color:#e8f4f5;font:inherit;font-size:11px}
+.data-version-control select:focus-visible{outline:2px solid #5be4c1;outline-offset:2px}
+@media(max-width:800px){.data-version-control>span{display:none}.data-version-control select{max-width:104px}}
+#years[data-submission]{grid-template-columns:repeat(5,minmax(0,1fr))}
+#years[data-submission] .year-stop{padding-left:4px;padding-right:3px}
+#years[data-submission] .year-stop:before{left:14px}
+#years[data-submission] .year-stop small{font-size:11px}

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>NearMart | Scenario Lab</title><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/scenario.css"><script type="module" src="/scenario.js"></script></head>
+<body class="scenario-page">
+<header class="header"><a class="brand" href="/"><b class="logo" aria-hidden="true">N</b><strong>NearMart</strong><span>Scenario Lab</span></a><div class="header-controls"><span class="chip"><small>Run ID</small><span id="lab-run">불러오는 중</span></span><form method="post" action="/logout"><button class="logout-button">로그아웃</button></form></div></header>
+<div class="shell">
+<nav class="sidebar scenario-nav" aria-label="주 메뉴"></nav>
+<main class="lab">
+  <section class="lab-intro"><div><h1 id="lab-heading">서울 배송 네트워크 시나리오 비교</h1><p id="lab-subheading">배치와 운영 성과의 차이를 원본 실행 및 제약 근거와 함께 검토합니다.</p></div><nav id="lab-workspaces" aria-label="Scenario Lab 작업 공간"><button data-workspace="compare" aria-pressed="true">A/B 시나리오 비교</button><button data-workspace="studio" aria-pressed="false">What-if Studio</button><button data-workspace="history" aria-pressed="false">실험 이력·근거</button></nav><div id="lab-status" class="lab-status" role="status">불러오는 중</div></section>
+  <details class="panel lab-chain ambient ambient--evidence"><summary><span>단계별 실행 근거</span><span class="lab-forecast">공식 연간 전망 <b>BLOCKED_ANNUAL / null</b></span></summary><div class="lab-chain-content"><div id="lab-stages"></div><div id="lab-stage-note" role="status"></div></div></details>
+  <section id="lab-whatif" class="lab-whatif" hidden aria-label="C+ v1 What-if 저장 결과"><iframe class="whatif-view-frame" src="/whatif-view?embed=1" title="C+ v1 What-if 저장 결과와 신규 실행 설계" loading="lazy"></iframe></section>
+  <div class="lab-layout">
+    <aside class="panel lab-tools" id="lab-tools" aria-label="비교 설정">
+      <div id="lab-compare-controls"><h2>비교 설정</h2>
+      <label class="lab-input side-a"><b>A</b> 기준 대안<select id="lab-a" aria-label="시나리오 A" disabled></select></label>
+      <label class="lab-input side-b"><b>B</b> 비교 대안<select id="lab-b" aria-label="시나리오 B" disabled></select></label>
+      <label class="lab-input">공통 분석 연도<select id="lab-year" disabled></select></label>
+      <details class="lab-secondary"><summary>비교 조건 상세</summary><div class="lab-conditions" id="lab-conditions"></div></details></div>
+      <section id="lab-studio-controls" hidden aria-label="실험 설정">
+        <h2>실험 설정</h2><label class="lab-input">기준 시나리오<select id="studio-base"></select></label>
+        <label class="lab-input">분석 연도<select id="studio-year"></select></label>
+        <label class="lab-input">수요 시장<select id="studio-market"></select></label>
+        <label class="lab-input">램프업 곡선<select id="studio-ramp"></select></label>
+        <label class="lab-input">거점 구성<select id="studio-network"></select></label>
+        <label class="lab-input">운영 충격<select id="studio-shock"></select></label>
+        <label class="lab-input">피커·라이더 인력<select disabled><option>재계산 미연결 · 저장 편성</option></select></label>
+        <div id="studio-inputs" class="lab-conditions"></div>
+        <div class="studio-actions"><button id="studio-reset">변경 초기화</button><button id="studio-run">저장 결과 조회</button></div>
+        <p id="studio-status" class="note" role="status"></p>
+      </section>
+      <details class="lab-secondary"><summary>지도 표시 설정</summary><label class="lab-check"><input type="checkbox" id="lab-territories" checked> 배정 권역 표시</label>
+      <label class="lab-check"><input type="checkbox" id="lab-hubs" checked> 조건부 거점 표시</label></details>
+      <details class="lab-secondary lab-submissions"><summary>T1–T4 제출 검토본</summary><p class="note">별도 S7/T3 벤치마크 근거</p><div id="lab-files"></div></details>
+    </aside>
+    <section class="lab-maps" aria-label="동일 축척 서울 비교 지도">
+      <div class="lab-map-tools"><button id="lab-toggle" aria-controls="lab-tools" aria-expanded="true">설정 접기</button><span id="lab-map-status" role="status">동일 범위 · 동일 축척</span><button id="lab-reset">서울 전체 보기</button></div>
+      <article class="panel lab-map side-a"><header><div><b>A</b><strong id="lab-title-a">기준 대안</strong></div><small id="lab-id-a"></small></header><svg id="lab-map-a" aria-label="시나리오 A 서울 권역"></svg></article>
+      <article class="panel lab-map side-b"><header><div><b>B</b><strong id="lab-title-b">비교 대안</strong></div><small id="lab-id-b"></small></header><svg id="lab-map-b" aria-label="시나리오 B 서울 권역"></svg></article>
+      <div class="lab-map-footer" id="lab-map-footer">서울 행정동 · SGIS / admdongkor</div>
+    </section>
+    <aside class="panel lab-performance" aria-label="성과 및 제약 검증"><div id="lab-metrics"></div><div id="lab-constraints"></div></aside>
+  </div>
+  <section class="panel lab-history" id="lab-history" hidden aria-label="실험 이력과 근거"><h2>실험 이력 · 실행 근거</h2><div id="lab-history-content"></div></section>
+  <section class="panel lab-bottom ambient ambient--decision" aria-label="재설계와 판단 근거">
+    <div id="lab-tabs" class="lab-tabs"><button data-pane="decision" aria-pressed="true">판단 근거</button><button data-pane="redesign" aria-pressed="false">SimPy · 재설계 환류</button><button data-pane="stress" aria-pressed="false">재무 · What-if</button></div>
+    <div id="lab-evidence"></div>
+  </section>
+</main>
+</div>
+</body></html>

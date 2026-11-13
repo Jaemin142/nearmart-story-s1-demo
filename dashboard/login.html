@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>NearMart | Control Tower Access</title><link rel="stylesheet" href="/styles.css"><script type="module" src="/login.js"></script></head>
+<body class="login-page">
+<main class="login-shell">
+  <div class="login-art" aria-hidden="true"></div>
+  <section class="login-brand" aria-labelledby="login-headline">
+    <a class="brand" href="/login"><b class="logo" aria-hidden="true">N</b><strong>NearMart</strong></a>
+    <p class="login-eyebrow">URBAN LOGISTICS · CONTROL TOWER</p>
+    <h1 id="login-headline">서울 배송망을 읽고,<br><em>더 나은 운영을 설계하다.</em></h1>
+    <p class="login-copy">운영 관제부터 시나리오 비교, 투자 의사결정까지 하나의 플랫폼에서.</p>
+    <ul class="login-features"><li><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m2 7 10-5 10 5-10 5-10-5Zm0 5 10 5 10-5M2 17l10 5 10-5"/></svg><span>Network<br>Intelligence</span></li><li><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 8v7m2 2 8-5M9 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm0 13a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm13-7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg><span>Scenario<br>Lab</span></li><li><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 21v-5h4v5Zm7 0v-9h4v9Zm7 0V9h4v12ZM3 11l6-5 5 2 7-6m-5 0h5v5"/></svg><span>Investment<br>Intelligence</span></li></ul>
+  </section>
+  <section class="login-card" aria-labelledby="access-heading">
+    <h2 id="access-heading">Welcome to NearMart</h2>
+    <p class="access-subtitle">Control Tower Access</p>
+    <form class="login-form" method="post" action="/login" novalidate>
+      <div class="login-field"><label for="username">아이디</label><div class="login-input"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 5h18v14H3zM3 6l9 7 9-7"/></svg><input id="username" name="username" type="text" autocomplete="off" placeholder="아이디를 입력하세요" required aria-describedby="username-error"></div><p id="username-error" role="alert" hidden></p></div>
+      <div class="login-field"><label for="password">비밀번호</label><div class="password-input login-input"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 10h14v11H5zM8 10V7a4 4 0 0 1 8 0v3m-4 4v3"/></svg><input id="password" name="password" type="password" placeholder="비밀번호를 입력하세요" autocomplete="off" required aria-describedby="password-error"><button id="toggle-password" type="button" aria-controls="password" aria-pressed="false" aria-label="비밀번호 표시"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6-10-6-10-6Zm13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg></button></div><p id="password-error" role="alert" hidden></p></div>
+      <button class="login-submit" type="submit">Sign In</button>
+      <p id="login-status" role="status" hidden></p>
+    </form>
+    <div class="login-footer"><span>NearMart 시연 접근</span></div>
+  </section>
+</main>
+</body>
+</html>

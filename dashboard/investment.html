@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>NearMart | Investment Intelligence</title><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/investment.css"><script type="module" src="/investment.js"></script></head>
+<body class="investment-page">
+<header class="header"><a class="brand" href="/"><b class="logo" aria-hidden="true">N</b><strong>NearMart</strong><span>Investment Intelligence</span></a><div class="header-controls"><span class="chip"><small>Run ID</small><span id="inv-run">불러오는 중</span></span><form method="post" action="/logout"><button class="logout-button">로그아웃</button></form></div></header>
+<div class="shell">
+<nav class="sidebar investment-nav" aria-label="주 메뉴"></nav>
+<main class="investment">
+  <section class="inv-heading ambient ambient--financial"><div><h1>재무·투자 분석</h1><p>연간 손익과 투자 현금을 분리해 자금 제약과 비용 동인을 검토합니다.</p></div><div id="inv-status" role="status">원본 조회 중</div></section>
+  <section class="inv-kpis" id="inv-kpis" aria-label="선택 시나리오 재무 지표"></section>
+  <div class="inv-layout">
+    <aside class="panel inv-controls" id="inv-controls" aria-label="재무 분석 조건">
+      <h2>분석 조건</h2>
+      <label>분석 대안<select id="inv-a" disabled></select></label>
+      <label>비교 대안<select id="inv-b" disabled></select></label>
+      <label>상세 연도<select id="inv-year" disabled></select></label>
+      <section id="inv-assumptions"></section>
+      <section><h3>공식 연간 전망</h3><p class="inv-warning">BLOCKED_ANNUAL / null</p></section>
+      <a id="inv-back" href="/scenario">Scenario Lab에서 비교 ↗</a>
+    </aside>
+    <div class="inv-center">
+      <section class="panel inv-chart">
+        <header><button id="inv-toggle" aria-controls="inv-controls" aria-expanded="true">조건 접기</button><div id="inv-chart-tabs"><button data-chart="cash" aria-pressed="true">현금흐름</button><button data-chart="operations" aria-pressed="false">손익 구성</button><button data-chart="investment" aria-pressed="false">투자 현금</button></div></header>
+        <div class="inv-chart-title"><div><h2 id="inv-chart-title">20년 현금흐름</h2><p id="inv-chart-note"></p></div><span>단위 · 억 원</span></div>
+        <svg id="inv-svg" role="img" aria-label="연도별 재무 차트"></svg>
+        <div id="inv-legend" class="inv-legend"></div>
+      </section>
+      <section class="panel inv-bottom" aria-label="비용 분해와 원본 근거">
+        <nav id="inv-detail-tabs" aria-label="재무 분석 상세"><button data-detail="operating" aria-pressed="true">운영비 분해</button><button data-detail="capital" aria-pressed="false">투자비·현금 대사</button><button data-detail="labor" aria-pressed="false">인건비 산출 근거</button><button data-detail="evidence" aria-pressed="false">원본·What-if</button></nav>
+        <div id="inv-detail"></div>
+      </section>
+    </div>
+    <aside class="panel inv-decision ambient ambient--financial" aria-label="투자 타당성"><h2>투자 타당성</h2><div id="inv-decision"></div></aside>
+  </div>
+</main>
+</div>
+</body></html>
